@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleApplication.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimpleApplication
 {
@@ -23,6 +25,8 @@ namespace SimpleApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<EmployeeContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
